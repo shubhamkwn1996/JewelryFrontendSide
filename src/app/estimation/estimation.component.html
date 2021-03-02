@@ -1,0 +1,59 @@
+<div class="card" id="pdfTable" #pdfTable>
+    <div class="card-body">
+        <form [formGroup]="estimationform">
+                <label form="isPrivilegedUser">Welcome {{userName}} is {{isPrivileged==="normal"?"NormalUser":"PrivilegedUser"}}</label>
+                              
+            <div class="form-group">
+                <label form="goldprice">Goldprice</label>
+                <input type="text" formControlName="goldprice" class="form-control"  />
+                <div *ngIf="submitted && f.goldprice.errors" class="invalid-feedback">
+                    <div *ngIf="f.goldprice.errors.required">goldprice is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label form="weight">Weight</label>
+                <input type="text" formControlName="weight" class="form-control"  />
+                <div *ngIf="submitted && f.weight.errors" class="invalid-feedback">
+                    <div *ngIf="f.weight.errors.required">weight is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label form="totalprice">Total Price</label>
+                <label form="totalprice">{{totalPrice}}</label>
+            </div>
+            <div class="form-group" *ngIf="isPrivileged==='privileged'">
+                <label form="discount">Discount {{discount}}</label>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary" (click) ="calculateGoldPrice()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Calculate
+                </button>                
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary" (click)="printToScreen()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Print to screen
+                </button>                
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary" (click)="printToPDF()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Print To File
+                </button>                
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary" >
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Print To Paper
+                </button>                
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary" (click)="close()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Close
+                </button>                
+            </div>
+        </form>
+    </div>
+</div>
